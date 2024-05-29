@@ -1,0 +1,129 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.row {
+    display: flex;
+    flex-wrap: nowrap; /* No permitir que las tarjetas se envuelvan a la siguiente línea */
+    width: calc(100% - 20px); /* Ajustar el ancho de la fila para evitar desbordamientos */
+    margin-bottom: 20px;
+}
+
+.card {
+    width: calc(33.33% - 20px); /* 33.33% de ancho para que haya tres columnas, restando 20px de margen para el espacio entre ellas */
+    height: 300px; /* Altura ajustada al tamaño de la imagen */
+    aspect-ratio: 1 / 0.7; /* Mantener la relación de aspecto 3:4 */
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden; /* Añadido para asegurar que la imagen no sobresalga de la tarjeta */
+    margin-bottom: 0; /* Eliminar margen inferior */
+}
+
+.card .content {
+    position: absolute; /* Posicionamiento absoluto para superponer sobre la imagen */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupar todo el espacio disponible */
+    height: 100%; /* Ocupar todo el espacio disponible */
+    padding: 5px;
+    opacity: 0; /* Inicialmente oculto */
+    transition: opacity 0.3s ease-in-out; /* Transición de opacidad */
+}
+
+.card .content h2,
+.card .content p {
+    color: white; /* Cambiar el color del texto a blanco */
+    font-size: 1.2em; /* Hacer el texto un poco más grande */
+    margin: 0; /* Eliminar márgenes predeterminados */
+    position: relative; /* Añadir posición relativa para ajustar el z-index */
+    z-index: 1; /* Asegurar que el texto esté en una capa superior */
+}
+
+
+
+.card .image-box {
+    width: 100%;
+    height: 100%;
+    max-width: 211px; /* Tamaño máximo de ancho */
+    max-height: 300px; /* Tamaño máximo de altura */
+    object-fit: cover;
+    transition: 0.5s ease-in-out;
+    position: relative; /* Añadido para posicionar correctamente el contenido */
+}
+
+.card .image-box img {
+    width: 100%; /* Ajustar al 100% del tamaño de su contenedor */
+    height: 100%; /* Ajustar al 100% del tamaño de su contenedor */
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid white;
+    border-radius: inherit;
+    opacity: 0;
+    transition: 0.4s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.5); /* Color de fondo oscuro */
+    box-sizing: border-box; /* Asegurar que el borde esté incluido en las dimensiones de la tarjeta */
+}
+
+.card:hover::after {
+    opacity: 1;
+}
+
+.card:hover .image-box img {
+    filter: grayscale(1) brightness(0.2); /* Oscurecer la imagen al pasar el cursor */
+}
+
+.card:hover .content {
+    opacity: 1; /* Mostrar al pasar el cursor sobre la tarjeta */
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+.container {
+    padding: 20px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.card {
+    width: 31%; /* Ajusta según sea necesario */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.image-box img {
+    width: 100%;
+    height: auto;
+}
+
+.content {
+    padding: 15px;
+    text-align: center;
+}
+
+h2 {
+    margin: 10px 0;
+}
+
+p {
+    color: #666;
+}
